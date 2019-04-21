@@ -1,0 +1,468 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "v1",
+        "title": "ERP API",
+        "description": "A public API for the team-team ERP system",
+        "termsOfService": "None",
+        "contact": {
+            "name": "Shayne Boyer",
+            "url": "https://twitter.com/spboyer",
+            "email": ""
+        },
+        "license": {
+            "name": "Use under LICX",
+            "url": "https://example.com/license"
+        }
+    },
+    "paths": {
+        "/api/CrmApi/AddCustomer": {
+            "post": {
+                "tags": [
+                    "CrmApi"
+                ],
+                "operationId": "AddCustomer",
+                "consumes": [
+                    "application/json-patch+json",
+                    "application/json",
+                    "text/json",
+                    "application/*+json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "customer",
+                        "in": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/CrmApi/AddOpportunities": {
+            "post": {
+                "tags": [
+                    "CrmApi"
+                ],
+                "operationId": "AddOpportunities",
+                "consumes": [
+                    "application/json-patch+json",
+                    "application/json",
+                    "text/json",
+                    "application/*+json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "opportunities_Product",
+                        "in": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Opportunities_product"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/CrmApi/AddEmployee": {
+            "post": {
+                "tags": [
+                    "CrmApi"
+                ],
+                "operationId": "AddEmployee",
+                "consumes": [
+                    "application/json-patch+json",
+                    "application/json",
+                    "text/json",
+                    "application/*+json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "employee",
+                        "in": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Employee"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/CrmApi/GetCustomer/{id}": {
+            "get": {
+                "tags": [
+                    "CrmApi"
+                ],
+                "operationId": "GetCustomer",
+                "consumes": [],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Module/GetModules/{database}": {
+            "get": {
+                "tags": [
+                    "Module"
+                ],
+                "operationId": "GetModules",
+                "consumes": [],
+                "produces": [
+                    "text/plain",
+                    "application/json",
+                    "text/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "database",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "uniqueItems": false,
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Modules"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Module/GetModules/{id}/{database}": {
+            "get": {
+                "tags": [
+                    "Module"
+                ],
+                "operationId": "GetModules",
+                "consumes": [],
+                "produces": [
+                    "text/plain",
+                    "application/json",
+                    "text/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "database",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/Modules"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Module/AddModule/{database}": {
+            "post": {
+                "tags": [
+                    "Module"
+                ],
+                "operationId": "AddModule",
+                "consumes": [
+                    "application/json-patch+json",
+                    "application/json",
+                    "text/json",
+                    "application/*+json"
+                ],
+                "produces": [
+                    "text/plain",
+                    "application/json",
+                    "text/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "module",
+                        "in": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Modules"
+                        }
+                    },
+                    {
+                        "name": "database",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/Modules"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Customer": {
+            "required": [
+                "customer_id"
+            ],
+            "type": "object",
+            "properties": {
+                "customer_id": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "middle_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "phone_number": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "loyality_points": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "type": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "year_birth": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "month_birth": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "day_birth": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "company": {
+                    "type": "string"
+                },
+                "company_email": {
+                    "type": "string"
+                },
+                "is_lead": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Opportunities_product": {
+            "required": [
+                "opportunities",
+                "product_id"
+            ],
+            "type": "object",
+            "properties": {
+                "opportunities": {
+                    "$ref": "#/definitions/Opportunity"
+                },
+                "product_id": {
+                    "uniqueItems": false,
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "Opportunity": {
+            "required": [
+                "opportunity_id"
+            ],
+            "type": "object",
+            "properties": {
+                "opportunity_id": {
+                    "type": "string"
+                },
+                "customer_id": {
+                    "type": "string"
+                },
+                "employee_id": {
+                    "type": "string"
+                },
+                "status": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "expected_revenue": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "notes": {
+                    "type": "string"
+                },
+                "start_date": {
+                    "format": "date",
+                    "type": "string"
+                },
+                "end_data": {
+                    "format": "date",
+                    "type": "string"
+                }
+            }
+        },
+        "Employee": {
+            "required": [
+                "id"
+            ],
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "middle_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "phone_number": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "year_birth": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "month_birth": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "day_birth": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "points": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "is_available": {
+                    "type": "boolean"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "department": {
+                    "type": "string"
+                }
+            }
+        },
+        "Modules": {
+            "description": "A Class rebresents the Modules Tables in the database",
+            "required": [
+                "id",
+                "title",
+                "category",
+                "discription",
+                "price"
+            ],
+            "type": "object",
+            "properties": {
+                "id": {
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "discription": {
+                    "type": "string"
+                },
+                "price": {
+                    "format": "int32",
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

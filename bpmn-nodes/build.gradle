@@ -1,0 +1,98 @@
+plugins {
+    // Apply the java-library plugin to add support for Java Library
+    id 'java'
+    id 'java-library'
+}
+
+repositories {
+    jcenter()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+        resources {
+            srcDirs = ['src/resources']
+        }
+    }
+}
+
+task copyJarToDesign(type: Copy) {
+
+    dependsOn 'makeJar'
+
+    outputs.upToDateWhen
+    {
+        println "Copying jar to Design"
+        println "Copied to ../designer/libs/"
+        false
+    }
+    from 'build/libs/bpmn-nodes.jar'
+    into '../designer/libs/'
+}
+
+task copyJarToEngine(type: Copy) {
+    
+    dependsOn 'makeJar'
+    
+    outputs.upToDateWhen
+    {
+        println "Copying jar to Engine"
+        println "Copied to ../engine/libs/"
+
+        false
+    }
+
+    from 'build/libs/bpmn-nodes.jar'
+    into '../engine/libs/'
+}
+
+task makeJar {
+
+    dependsOn 'jar'
+
+    doLast {
+
+        println 'Making Jar finished'
+        
+    }
+}
+
+task release {
+    
+    dependsOn 'copyJarToDesign'
+    dependsOn 'copyJarToEngine'
+    
+    doLast {
+
+        println 'File Copying finished'
+        println 'Task Ended'
+        
+    }
+}
+
+dependencies {
+    // This dependency is exported to consumers, that is to say found on their compile classpath.
+    api 'org.apache.commons:commons-math3:3.6.1'
+
+    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
+    implementation 'com.google.guava:guava:27.0.1-jre'
+
+    compile 'javax.xml.bind:jaxb-api:2.3.1'
+    compile 'javax.activation:activation:1.1'
+    compile 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
+
+
+    compile group: 'javax.xml.ws', name: 'jaxws-api', version: '2.3.1'
+
+    compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.28'
+    compile 'org.glassfish.jersey.inject:jersey-hk2:2.28'
+    
+    compile group: 'org.glassfish.main.javaee-api', name: 'javax.jws', version: '3.1.2.2'
+
+    
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+}
